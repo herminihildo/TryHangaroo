@@ -1,0 +1,99 @@
+import random
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ]
+Reserve_Words = ["cute"] #Wag Kalimutan Lagyan
+secretWord = random.choice(Reserve_Words);
+stringWord = "".join(secretWord);
+arrayWord = [];
+WordLength = len(secretWord);
+lettersGuessed = [];
+lettersWrong = [];
+MistakesMade = 0;
+turns = 0;
+blank = "*";
+
+print("test")
+print(Reserve_Words[0])
+print(stringWord)
+# arrayWord[0] = stringWord[0]
+# print(arrayWord[0])
+
+# Split secretWord to array variables
+for count in range(WordLength):
+    arrayWord.append(stringWord[count])
+    
+print (arrayWord)
+
+def isWordGuessed(secretWord,lettersGuessed):
+    for Let in secretWord:
+        if Let in lettersGuessed:
+            bool (lettersGuessed)==1
+        else:
+            return (0)
+            
+# isWordGuessed(secretWord, lettersGuessed) == 1
+        
+def getGuessedWord(secretWord, lettersGuessed):
+    word = " "
+    for Let in secretWord:
+        print("Let is: ", Let)
+        print("secretWord is: ", secretWord[0])
+        if Let in lettersGuessed:
+            word += Let
+            print("truth")
+        else:
+            word+= "_"
+            print("fiction")
+        return 
+    
+def getAvailableLetters(secretWord, lettersGuessed):
+    alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' ]
+    for Let in lettersGuessed:
+        for Let in alphabet:
+            alphabet = alphabet.replace(Let,"")
+        return(alphabet)
+
+#Prints how many letterss are there in the letter
+def WordSpecs():
+    # print("The Secret Word is", WordLength, "letters");
+    # for count in range(WordLength):
+    #   hiddenWord += blank
+    # print("The Secret Word: ", hiddenWord);
+    print("The Secret Word is", WordLength, "letters");
+    # WordSpecs()
+    
+def Guessing():
+    while turns>=0:
+        isWordGuessed(secretWord, lettersGuessed) ==0
+        guess = input("Guess a Letter: ")
+        LowerGuess = guess.lower()
+        if LowerGuess not in alphabet:
+            print("Enter a Valid Letter!")
+        elif LowerGuess in lettersGuessed:
+            print ("You have already guess this letter:")
+            print ("Available Letters:", getAvailableLetters(lettersGuessed))
+        else :
+            lettersGuessed.append(LowerGuess)
+            if LowerGuess in secretWord:
+                print ("")
+                print (getGuessedWord(secretWord, lettersGuessed))
+                # print ("Available Letters:", getAvailableLetters(lettersGuessed))
+                # print ("Mistakes:", MistakesMade)
+            else:
+                print ("Letter is not in the word.")
+                lettersWrong.append(LowerGuess)
+                MistakesMade = len(lettersWrong)
+                print ("Mistakes: ", MistakesMade)
+                print ("Available Letters: ", lettersGuessed)
+        # isWordGuessed(secretWord, lettersGuessed) == 1
+        # print("")
+        # print("Congrautlations! You guessed the word!")
+
+#Starting The Game
+def welcome():
+    name = input("Enter your name: ")
+    print("Hello,", name)
+    print("Let's play Hangaroo")
+    
+    WordSpecs()
+    Guessing()
+welcome()
